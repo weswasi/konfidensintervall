@@ -41,7 +41,7 @@ ui <- tagList(
                       value = 95),
           br(),
           tags$a(
-            href="https://github.com/weswasi/standardavvikelse", 
+            href="https://github.com/weswasi/konfidensintervall/", 
             tags$img(src="https://github.githubassets.com/images/modules/logos_page/Octocat.png",
                      width="40",
                      height="35"))
