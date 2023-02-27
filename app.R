@@ -51,7 +51,9 @@ ui <- tagList(
         )
       )
     )
-  ))
+  )
+)
+
 # Define server logic required to draw a histogram
 server <- function(input, output) {
   
@@ -103,13 +105,15 @@ server <- function(input, output) {
       sample_prop = sample_props,
       upper_ci = upper_cis,
       lower_ci = lower_cis) %>%
+      mutate(bound = ifelse(lower_cis < 0.5 & upper_cis > 0.5, 0, 1)) %>%
       mutate(experiment_number = as.factor(row_number())) %>%
       ggplot(aes(x = experiment_number, y = sample_prop)) +
       geom_point(size = 3, color = 'steelblue') +
-      geom_linerange(aes(ymin = lower_ci, ymax = upper_ci)) +
+      geom_linerange(aes(ymin = lower_ci, ymax = upper_ci, color = bound)) +
       geom_hline(aes(yintercept = true_proportion),
                  linetype = 'dashed', linewidth = 1) +
       scale_y_continuous(limits = c(0, 1)) +
+      scale_colour_gradient2(mid = "black" , high = "red") +
       coord_flip() +
       ggtitle(title_text, subtitle = subtitle_text) +
       ylab('Populationsvärdet') +
@@ -119,7 +123,8 @@ server <- function(input, output) {
             axis.title = element_text(size = 15),
             axis.text = element_blank(),
             axis.ticks = element_blank(),
-            axis.line.y = element_blank())
+            axis.line.y = element_blank(),
+            legend.position = "none")
     p
   })
 }

@@ -5,9 +5,9 @@ account: weswasi
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 8420899
-bundleId: 6892391
+bundleId: 6892644
 url: https://weswasi.shinyapps.io/konfidensintervall/
-when: 1677500104.16919
-lastSyncTime: 1677500104.1692
+when: 1677505187.39545
+lastSyncTime: 1677505187.39548
 asMultiple: FALSE
 asStatic: FALSE
