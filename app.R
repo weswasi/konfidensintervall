@@ -40,6 +40,22 @@ ui <- tagList(
                       step = 5,
                       value = 95),
           br(),
+          tags$b("Om konfidensintervall"),
+          p("Ett konfidensintervall är ett statistiskt verktyg som används för att uppskatta en okänd parameter i en population, 
+            baserat på ett stickprov från den populationen. Konfidensintervallet ger en uppskattning av intervallet där den verkliga 
+            parametern sannolikt finns med en viss sannolikhet vanligtvis uttryckt som en procentsats.", style = "font-size:13px;"),
+          p("Ett konfidensintervall tas fram genom att följande formel:", style = "font-size:13px;"),
+          tags$img(src = "ci.gif"),
+          p("där x̄ är medelvärdet av alla observationer, z är z-poäng som motsvarar den procentsats som konfidensintervallet önskas inneha 
+            (för exempelvis ett 95%-igt konfidensintervall är ska z-värdet vara 1.96),
+            s är standardavvikelsen och n är antalet observationer. Plus-minustecknet indikerar att två uträckningar krävs för att ta fram intervallet; 
+            ett för den längre delen av intervallet och en för den högre delen av intervallet.", style = "font-size:13px;"),
+          p("Ett exempel på hur man använder ett konfidensintervall är när man vill uppskatta medelvärdet i en population baserat på en stickprovsdata. 
+            Genom att beräkna konfidensintervallet för medelvärdet, kan man få en uppskattning av intervallet där det verkliga medelvärdet med 
+            hög sannolikhet befinner sig.", style = "font-size:13px;"),
+          p("Konfidensintervallet kan också användas för att jämföra två populationer. Till exempel kan man använda konfidensintervallet för att se om 
+            det finns en signifikant skillnad i medelvärdet mellan två grupper som jämförs.", style = "font-size:13px;"),
+          br(),
           tags$a(
             href="https://github.com/weswasi/konfidensintervall/", 
             tags$img(src="https://github.githubassets.com/images/modules/logos_page/Octocat.png",
@@ -111,7 +127,7 @@ server <- function(input, output) {
       geom_point(size = 3, color = 'steelblue') +
       geom_linerange(aes(ymin = lower_ci, ymax = upper_ci, color = bound)) +
       geom_hline(aes(yintercept = true_proportion),
-                 linetype = 'dashed', linewidth = 1) +
+                 linetype = 'dashed') +
       scale_y_continuous(limits = c(0, 1)) +
       scale_colour_gradient2(mid = "black" , high = "red") +
       coord_flip() +
